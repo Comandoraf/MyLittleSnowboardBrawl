@@ -9,87 +9,58 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1810043204071740}
+  m_RootGameObject: {fileID: 1471114652654756}
   m_IsPrefabParent: 1
---- !u!1 &1810043204071740
+--- !u!1 &1471114652654756
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4721337547649858}
-  - component: {fileID: 212963082521864978}
-  - component: {fileID: 114678530188706318}
-  - component: {fileID: 114090929804525718}
-  - component: {fileID: 70651285786795306}
+  - component: {fileID: 4036194580773688}
+  - component: {fileID: 212282392223525048}
+  - component: {fileID: 114849876275214166}
   m_Layer: 0
-  m_Name: Tree
+  m_Name: SnowballGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4721337547649858
+--- !u!4 &4036194580773688
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1810043204071740}
+  m_GameObject: {fileID: 1471114652654756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.3, y: -11.15, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &70651285786795306
-CapsuleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1810043204071740}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.89, y: 1.43}
-  m_Direction: 0
---- !u!114 &114090929804525718
+--- !u!114 &114849876275214166
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1810043204071740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab99a7b08b22eb46842542d1693be17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textToDisplay: You bumped into a tree. Game Over!
---- !u!114 &114678530188706318
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1810043204071740}
+  m_GameObject: {fileID: 1471114652654756}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b2959c47269b81459ae06c3ce70e4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1}
-  minSpeed: 0.15
-  maxSpeed: 0.15
---- !u!212 &212963082521864978
+  minSpeed: 0.1
+  maxSpeed: 0.1
+--- !u!212 &212282392223525048
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1810043204071740}
+  m_GameObject: {fileID: 1471114652654756}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -118,12 +89,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ee1ebce79fd4834da9700872ce0bc8a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 005d4a8a353e18549a2e9bbcf8065062, type: 3}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.89, y: 10.64}
+  m_Size: {x: 0.66, y: 0.59}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public GameObject snowBallPrefab;
     public Text pointsText;
-    public Text gameOver;
+    public Text feedbackText;
 
     Vector2 moveVector;
     Vector3 snowBallMoveVector;
@@ -18,14 +18,14 @@ public class PlayerController : MonoBehaviour {
     bool bPlayerControl = true;
     public float loseControlDelay;
 
-    IEnumerator GainPoints()
-    {
-        while (true)
-        {
-            points += 1;
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
+    //IEnumerator GainPoints()
+    //{
+    //    while (true)
+    //    {
+    //        points += 1;
+    //        yield return new WaitForSeconds(0.1f);
+    //    }
+    //}
 
     public void addPoints(int amount)
     {
@@ -34,16 +34,27 @@ public class PlayerController : MonoBehaviour {
 
     private void Start()
     {
-        StartCoroutine(GainPoints());
+        //StartCoroutine(GainPoints());
     }
 
-    public void GameOver(string message)
+    public void KillPlayer(string message)
     {
-        gameOver.text = message;
-        gameOver.enabled = true;
+        feedbackText.text = message;
+        feedbackText.enabled = true;
         Destroy(gameObject);
     }
 
+    public void PrintMessageForPlayer(string message, float displayTime = 2.0f)
+    {
+        feedbackText.text = message;
+        feedbackText.enabled = true;
+        Invoke("HideText", displayTime);
+    }
+
+    void HideText()
+    {
+        feedbackText.enabled = false;
+    }
     public void Connect(Rigidbody2D rb)
     {
         DistanceJoint2D dj2d = GetComponent<DistanceJoint2D>();
@@ -86,6 +97,7 @@ public class PlayerController : MonoBehaviour {
                 snowBallMoveVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
                 sb.GetComponent<SnowBallController>().moveVector = snowBallMoveVector.normalized;
                 sb.GetComponent<SnowBallController>().parent = this;
+                
             }
         }
         else
@@ -104,7 +116,8 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate()
     {
         pointsText.text = "Points: " + points;
-        gameObject.transform.position += new Vector3(moveVector.x * speed, moveVector.y * speed);
+        if (moveVector.magnitude != 0)
+            gameObject.transform.position += new Vector3(moveVector.x * speed / moveVector.magnitude, moveVector.y * speed / moveVector.magnitude);
         moveVector.Set(0, 0);
     }
 }

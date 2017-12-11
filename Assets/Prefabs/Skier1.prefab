@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab99a7b08b22eb46842542d1693be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToDisplay: Some idiot skier killed you... Game Over!
+  textToDisplay: Press A or D to free yourself
 --- !u!114 &114644888674505000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 1, y: -1}
-  minSpeed: 0.1
+  minSpeed: 0.15
   maxSpeed: 0.2
 --- !u!198 &198981468605202972
 ParticleSystem:

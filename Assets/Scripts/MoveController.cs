@@ -15,7 +15,6 @@ public class MoveController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
-        gameObject.transform.position += new Vector3(direction.x * speed, direction.y * speed);
+        gameObject.transform.position += new Vector3(direction.x * speed / direction.magnitude, direction.y * speed / direction.magnitude);
 	}
 }

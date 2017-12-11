@@ -19,7 +19,7 @@ TagManager:
   - Snowball
   - Wall
   - Spawner
-  - 
+  - GUI
   - 
   - 
   - 
@@ -48,4 +48,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1224284823
+    locked: 0
+  - name: GUI
+    uniqueID: 4156683635
     locked: 0

@@ -13,10 +13,11 @@ public class PlayerKiller : MonoBehaviour
             {
                 GetComponent<EdgeCollider2D>().enabled = false;
                 collision.collider.GetComponent<PlayerController>().Connect(GetComponent<Rigidbody2D>());
+                collision.collider.GetComponent<PlayerController>().PrintMessageForPlayer(textToDisplay);
             }
             else
             {
-                collision.collider.GetComponent<PlayerController>().GameOver(textToDisplay);
+                collision.collider.GetComponent<PlayerController>().KillPlayer(textToDisplay);
             }
         }
         else if (collision.collider.tag == "Enemy")

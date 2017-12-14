@@ -21,7 +21,8 @@ public class Spawner : MonoBehaviour {
         b = box.bounds.center.y - a * box.bounds.center.x;
         xMin = box.bounds.center.x - box.bounds.extents.x;
         xMax = box.bounds.center.x + box.bounds.extents.x;
-        StartCoroutine("Spawning");
+        for (int i = 0; i < objectsToSpawn.Count; i++)
+            StartCoroutine("Spawning", i);
     }
 
     Vector3 getRandomPoint()
@@ -41,13 +42,13 @@ public class Spawner : MonoBehaviour {
         
     }
 
-    IEnumerator Spawning()
+    IEnumerator Spawning(int selected)
     {
         while(true)
         {
             Quaternion q = Quaternion.identity;
             q.eulerAngles = new Vector3(0, 0, spawnRotation);
-            int selected = Random.Range(0, objectsToSpawn.Count);
+            //int selected = Random.Range(0, objectsToSpawn.Count);
             Instantiate(objectsToSpawn[selected], getRandomPoint(), q);
             yield return new WaitForSeconds(objectsSpawnDelays[selected]);
         }

@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1810043204071740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textToDisplay: You bumped into a tree. Game Over!
+  hitSound: {fileID: 82954136589773178, guid: dede398588e449a48b9dc3060559134d, type: 2}
 --- !u!114 &114678530188706318
 MonoBehaviour:
   m_ObjectHideFlags: 1

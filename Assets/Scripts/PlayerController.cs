@@ -6,26 +6,22 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     public float speed;
+    public float loseControlDelay;
+    public float shootDelay;
     public GameObject snowBallPrefab;
     public Text pointsText;
     public Text feedbackText;
+    public Text ammoText;
 
     Vector2 moveVector;
     Vector3 snowBallMoveVector;
-    public float shootDelay;
-    float counter = 0f;
-    int points;
+    
+    float timer = 0f;
+    int points = 0;
+    int ammo = 3;
     bool bPlayerControl = true;
-    public float loseControlDelay;
+    
 
-    //IEnumerator GainPoints()
-    //{
-    //    while (true)
-    //    {
-    //        points += 1;
-    //        yield return new WaitForSeconds(0.1f);
-    //    }
-    //}
 
     public void addPoints(int amount)
     {
@@ -89,14 +85,22 @@ public class PlayerController : MonoBehaviour {
                 moveVector.y = -1;
             }
 
-            counter += Time.deltaTime;
-            if (Input.GetMouseButtonDown(0) && counter > shootDelay)
+            timer += Time.deltaTime;
+            if (Input.GetMouseButtonDown(0) )
             {
-                counter = 0;
-                GameObject sb = Instantiate(snowBallPrefab, gameObject.transform.position, Quaternion.identity);
-                snowBallMoveVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
-                sb.GetComponent<SnowBallController>().moveVector = snowBallMoveVector.normalized;
-                sb.GetComponent<SnowBallController>().parent = this;
+                if(ammo > 0)
+                {
+                    ammo--;
+                    ammoText.text = ammo.ToString();
+                    GameObject sb = Instantiate(snowBallPrefab, gameObject.transform.position, Quaternion.identity);
+                    snowBallMoveVector = Camera.main.ScreenToWorldPoint(Input.mousePosition) - gameObject.transform.position;
+                    sb.GetComponent<SnowBallController>().moveVector = snowBallMoveVector.normalized;
+                    sb.GetComponent<SnowBallController>().parent = this;
+                }
+                else
+                {
+                    PrintMessageForPlayer("No ammo", 1f);
+                }
                 
             }
         }
@@ -119,5 +123,15 @@ public class PlayerController : MonoBehaviour {
         if (moveVector.magnitude != 0)
             gameObject.transform.position += new Vector3(moveVector.x * speed / moveVector.magnitude, moveVector.y * speed / moveVector.magnitude);
         moveVector.Set(0, 0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Ammo")
+        {
+            ammo += 3;
+            ammoText.text = ammo.ToString();
+            Destroy(collision.gameObject);
+        }
     }
 }

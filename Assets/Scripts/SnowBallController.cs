@@ -9,7 +9,8 @@ public class SnowBallController : MonoBehaviour {
     public ParticleSystem snow;
     public GameObject PointsText;
     public float speed;
-
+    public AudioSource hitSound;
+    public AudioSource enemyHitSound;
     [HideInInspector]
     public PlayerController parent;
 	// Use this for initialization
@@ -24,18 +25,24 @@ public class SnowBallController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioSource soundObject;
         if (collision.collider.tag == "Enemy")
         {
             Instantiate(snow, collision.transform.position, Quaternion.identity);
-            GameObject go = Instantiate(PointsText, collision.transform.position, Quaternion.Euler(0,0,-30.0f));
+            GameObject go = Instantiate(PointsText, collision.transform.position, Quaternion.Euler(0, 0, -30.0f));
             Destroy(go, 0.5f);
             parent.addPoints(10);
             collision.gameObject.GetComponent<Renderer>().enabled = false;
             collision.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
             collision.gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+            soundObject = Instantiate(enemyHitSound);
         }
         else
+        {
             Instantiate(snow, collision.transform);
+            soundObject = Instantiate(hitSound, collision.transform);
+        }
+        Destroy(soundObject, soundObject.clip.length);
         Destroy(gameObject);
     }
 }

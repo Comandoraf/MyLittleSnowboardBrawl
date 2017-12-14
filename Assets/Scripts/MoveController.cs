@@ -8,7 +8,8 @@ public class MoveController : MonoBehaviour {
     public float minSpeed;
     public float maxSpeed;
     float speed;
-	// Use this for initialization
+
+	// Set speed in given range
 	void Start () {
         speed = Random.Range(minSpeed, maxSpeed);
 	}

@@ -16,11 +16,9 @@ public class PlayerController : MonoBehaviour {
     Vector2 moveVector;
     Vector3 snowBallMoveVector;
     
-    float timer = 0f;
     int points = 0;
     int ammo = 3;
     bool bPlayerControl = true;
-    
 
 
     public void addPoints(int amount)
@@ -28,18 +26,18 @@ public class PlayerController : MonoBehaviour {
         points += amount;
     }
 
-    private void Start()
-    {
-        //StartCoroutine(GainPoints());
-    }
-
+    /// <summary>
+    /// Destroy player and print message on screen
+    /// </summary>
     public void KillPlayer(string message)
     {
         feedbackText.text = message;
         feedbackText.enabled = true;
         Destroy(gameObject);
     }
-
+    /// <summary>
+    /// Print message on screen for given time
+    /// </summary>
     public void PrintMessageForPlayer(string message, float displayTime = 2.0f)
     {
         feedbackText.text = message;
@@ -51,21 +49,30 @@ public class PlayerController : MonoBehaviour {
     {
         feedbackText.enabled = false;
     }
+
+    /// <summary>
+    /// Connects player to given rigidbody
+    /// </summary>
     public void Connect(Rigidbody2D rb)
     {
         DistanceJoint2D dj2d = GetComponent<DistanceJoint2D>();
+        //if player isn't already connected to any rigidbody
         if (!dj2d)
         {
             dj2d = gameObject.AddComponent<DistanceJoint2D>();
-            loseControlDelay = 3.0f;
+            
             dj2d.autoConfigureDistance = false;
             dj2d.distance = 0;
             dj2d.connectedBody = rb;
+
+            //disallow player controling avatar for some delay
             bPlayerControl = false;
+            loseControlDelay = 3.0f;
         }
     }
 
 	void Update () {
+        //if player can control avatar
         if (bPlayerControl)
         {
             if (Input.GetKey(KeyCode.A))
@@ -84,12 +91,14 @@ public class PlayerController : MonoBehaviour {
             {
                 moveVector.y = -1;
             }
-
-            timer += Time.deltaTime;
+           
+            //player tries shoot
             if (Input.GetMouseButtonDown(0) )
             {
+                
                 if(ammo > 0)
                 {
+                    //spawn snowball, set it move vector to mouse direction and set player as parent
                     ammo--;
                     ammoText.text = ammo.ToString();
                     GameObject sb = Instantiate(snowBallPrefab, gameObject.transform.position, Quaternion.identity);
@@ -106,13 +115,18 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-                loseControlDelay -= 0.3f;
+            
             if (loseControlDelay <= 0)
             {
+                //return player movement ability, destroy enemy and joint
                 bPlayerControl = true;
                 Destroy(GetComponent<DistanceJoint2D>().connectedBody.gameObject);
                 Destroy(GetComponent<DistanceJoint2D>());
+            }
+            //if player hits A or D it will return him movement ability
+            else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
+                loseControlDelay -= 0.3f;
             }
         }
     }
@@ -120,6 +134,7 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate()
     {
         pointsText.text = "Points: " + points;
+        //movement
         if (moveVector.magnitude != 0)
             gameObject.transform.position += new Vector3(moveVector.x * speed / moveVector.magnitude, moveVector.y * speed / moveVector.magnitude);
         moveVector.Set(0, 0);
@@ -127,6 +142,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //collecting ammo
         if (collision.collider.tag == "Ammo")
         {
             ammo += 3;

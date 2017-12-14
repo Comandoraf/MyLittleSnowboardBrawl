@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4721337547649858}
   - component: {fileID: 212963082521864978}
   - component: {fileID: 114678530188706318}
-  - component: {fileID: 114090929804525718}
   - component: {fileID: 70651285786795306}
+  - component: {fileID: 50380117966661824}
+  - component: {fileID: 114320790406344330}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -43,6 +44,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50380117966661824
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1810043204071740}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!70 &70651285786795306
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -58,7 +79,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.89, y: 1.43}
   m_Direction: 0
---- !u!114 &114090929804525718
+--- !u!114 &114320790406344330
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,11 +87,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1810043204071740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab99a7b08b22eb46842542d1693be17, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c075d7d8bb5c354abcde52ccde77363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToDisplay: You bumped into a tree. Game Over!
-  hitSound: {fileID: 82954136589773178, guid: dede398588e449a48b9dc3060559134d, type: 2}
+  textToDisplay: You bumped into tree. Game Over....
+  PlayerHitSound: {fileID: 82954136589773178, guid: dede398588e449a48b9dc3060559134d,
+    type: 2}
 --- !u!114 &114678530188706318
 MonoBehaviour:
   m_ObjectHideFlags: 1

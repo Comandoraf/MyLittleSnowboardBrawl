@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114344099618120126}
   - component: {fileID: 68788899273445578}
   - component: {fileID: 50950769462364386}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: skierBig
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4764934683738108}
   - component: {fileID: 198380500652856834}
   - component: {fileID: 199772478690223826}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: SnowBallBoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textToDisplay: You have been kill accidentally by very fast skier
-  hitSound: {fileID: 0}
 --- !u!114 &114344099618120126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3566,7 +3565,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e3de80c4eddc4341874ec9d9134b797, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d12624df174597347873bd044f3cf968, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

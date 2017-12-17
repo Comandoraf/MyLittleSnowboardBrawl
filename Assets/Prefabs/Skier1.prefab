@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4266767794975808}
   - component: {fileID: 198981468605202972}
   - component: {fileID: 199934226313384716}
-  m_Layer: 4
+  m_Layer: 15
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114162324580014310}
   - component: {fileID: 68459271795429934}
   - component: {fileID: 50829949295553266}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Skier1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3559,7 +3559,7 @@ SpriteRenderer:
   m_SortingLayerID: 1224284823
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: c670c2704a7bad8409f9d986e7404949, type: 3}
+  m_Sprite: {fileID: 21300000, guid: adca1516e205da842b9c0afe1c36e758, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

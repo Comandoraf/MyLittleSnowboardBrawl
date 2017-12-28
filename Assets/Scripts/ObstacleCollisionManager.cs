@@ -24,6 +24,11 @@ public class ObstacleCollisionManager : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        //move ammo away from tree
+        else if (collision.collider.tag == "Ammo")
+        {
+            collision.gameObject.transform.position += new Vector3(-1.5f, 0, 0);
+        }
 
     }
 }

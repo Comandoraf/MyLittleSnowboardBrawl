@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public float speed;
     public float loseControlDelay;
@@ -12,10 +13,10 @@ public class PlayerController : MonoBehaviour {
     public Text pointsText;
     public Text feedbackText;
     public Text ammoText;
-
+    public AudioSource PlayerDeathBySkierSound;
     Vector2 moveVector;
     Vector3 snowBallMoveVector;
-    
+
     int points = 0;
     int ammo = 3;
     bool bPlayerControl = true;
@@ -33,7 +34,11 @@ public class PlayerController : MonoBehaviour {
     {
         feedbackText.text = message;
         feedbackText.enabled = true;
+        AudioSource soundObject;
+        soundObject = Instantiate(PlayerDeathBySkierSound);
+        Destroy(soundObject, soundObject.clip.length);
         Destroy(gameObject);
+        FindObjectOfType<MyGameManager>().GameOver();
     }
     /// <summary>
     /// Print message on screen for given time
@@ -60,7 +65,7 @@ public class PlayerController : MonoBehaviour {
         if (!dj2d)
         {
             dj2d = gameObject.AddComponent<DistanceJoint2D>();
-            
+
             dj2d.autoConfigureDistance = false;
             dj2d.distance = 0;
             dj2d.connectedBody = rb;
@@ -71,7 +76,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-	void Update () {
+    void Update()
+    {
         //if player can control avatar
         if (bPlayerControl)
         {
@@ -91,12 +97,12 @@ public class PlayerController : MonoBehaviour {
             {
                 moveVector.y = -1;
             }
-           
+
             //player tries shoot
-            if (Input.GetMouseButtonDown(0) )
+            if (Input.GetMouseButtonDown(0))
             {
-                
-                if(ammo > 0)
+
+                if (ammo > 0)
                 {
                     //spawn snowball, set it move vector to mouse direction and set player as parent
                     ammo--;
@@ -110,12 +116,11 @@ public class PlayerController : MonoBehaviour {
                 {
                     PrintMessageForPlayer("No ammo", 1f);
                 }
-                
+
             }
         }
         else
         {
-            
             if (loseControlDelay <= 0)
             {
                 //return player movement ability, destroy enemy and joint

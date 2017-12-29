@@ -11,7 +11,7 @@ public class ObstacleCollisionManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         AudioSource soundObject;
-        //if player hit obstacle
+        //if player hits obstacle
         if (collision.collider.tag == "Player")
         {
             collision.collider.GetComponent<PlayerController>().KillPlayer(textToDisplay);

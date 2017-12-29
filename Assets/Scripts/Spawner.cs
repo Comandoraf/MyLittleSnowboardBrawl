@@ -17,14 +17,17 @@ public class Spawner : MonoBehaviour {
     void Start ()
     {
         box = gameObject.GetComponent<BoxCollider2D>();
+        //line equation calculations
         a = Mathf.Tan(Mathf.Deg2Rad * (90 + box.transform.rotation.eulerAngles.z));
         b = box.bounds.center.y - a * box.bounds.center.x;
         xMin = box.bounds.center.x - box.bounds.extents.x;
         xMax = box.bounds.center.x + box.bounds.extents.x;
+        //start spawning all objects in list
         for (int i = 0; i < objectsToSpawn.Count; i++)
             StartCoroutine("Spawning", i);
     }
 
+    //returns random point in given BoxCollider
     Vector3 getRandomPoint()
     {
         x = Random.Range(xMin, xMax);
@@ -33,7 +36,7 @@ public class Spawner : MonoBehaviour {
 
     private void Update()
     {
-        //Debug.Log("time: " + Time.timeSinceLevelLoad);
+        //decrase spawn delays
         for (int i = 0; i < objectsToSpawn.Count; i++)
         {
             if (Time.timeSinceLevelLoad % reductorsFrequencies[i] <= 0.01f)
@@ -44,11 +47,11 @@ public class Spawner : MonoBehaviour {
 
     IEnumerator Spawning(int selected)
     {
+        //spawn objects every given time delay
         while(true)
         {
             Quaternion q = Quaternion.identity;
             q.eulerAngles = new Vector3(0, 0, spawnRotation);
-            //int selected = Random.Range(0, objectsToSpawn.Count);
             Instantiate(objectsToSpawn[selected], getRandomPoint(), q);
             yield return new WaitForSeconds(objectsSpawnDelays[selected]);
         }

@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Destroy player and print message on screen
+    /// Destroy player, play sound and print message on screen.
     /// </summary>
     public void KillPlayer(string message)
     {
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
         FindObjectOfType<MyGameManager>().GameOver();
     }
+
     /// <summary>
     /// Print message on screen for given time
     /// </summary>
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
     public void Connect(Rigidbody2D rb)
     {
         DistanceJoint2D dj2d = GetComponent<DistanceJoint2D>();
-        //if player isn't already connected to any rigidbody
+        //if player isn't already connected to any enemy
         if (!dj2d)
         {
             dj2d = gameObject.AddComponent<DistanceJoint2D>();
@@ -101,7 +102,6 @@ public class PlayerController : MonoBehaviour
             //player tries shoot
             if (Input.GetMouseButtonDown(0))
             {
-
                 if (ammo > 0)
                 {
                     //spawn snowball, set it move vector to mouse direction and set player as parent
@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+        //player can't control avatar
         else
         {
             if (loseControlDelay <= 0)
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        pointsText.text = "Points: " + points;
+        pointsText.text = points.ToString();
         //movement
         if (moveVector.magnitude != 0)
             gameObject.transform.position += new Vector3(moveVector.x * speed / moveVector.magnitude, moveVector.y * speed / moveVector.magnitude);

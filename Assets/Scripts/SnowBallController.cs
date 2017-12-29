@@ -26,29 +26,35 @@ public class SnowBallController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         AudioSource soundObject;
+        //snowball hits enemy
         if (collision.collider.tag == "Enemy")
         {
             if (collision.collider.name.StartsWith("Skier"))
             {
+                //play particle effect
                 Instantiate(snow, collision.transform.position, Quaternion.identity);
+                //play score "animation"
                 GameObject go = Instantiate(PointsText, collision.transform.position, Quaternion.Euler(0, 0, -30.0f));
                 Destroy(go, 0.5f);
+                //destroy enemy
+                Destroy(collision.collider.gameObject);
+                //add points to player
                 parent.addPoints(10);
-                collision.gameObject.GetComponent<Renderer>().enabled = false;
-                collision.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
-                collision.gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+
+                //play sound
                 soundObject = Instantiate(enemyHitSound);
                 Destroy(soundObject, soundObject.clip.length);
-                Destroy(gameObject);
             }
         }
+        //snowball hits obstacle
         else
         {
+            //play sound and particle effects
             Instantiate(snow, collision.transform);
             soundObject = Instantiate(hitSound, collision.transform);
             Destroy(soundObject, soundObject.clip.length);
-            Destroy(gameObject);
+            
         }
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

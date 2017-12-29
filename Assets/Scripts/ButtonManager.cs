@@ -7,12 +7,7 @@ public class ButtonManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        Cursor.SetCursor(null, new Vector2(), CursorMode.Auto);
 	}
 
     public void onStarGameClick()
@@ -20,8 +15,14 @@ public class ButtonManager : MonoBehaviour {
         SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
 
+    public void onHighScoreClick()
+    {
+        SceneManager.LoadScene("HighScoreScene", LoadSceneMode.Single);
+    }
+
     public void onExitGameClick()
     {
         Application.Quit();
     }
+    
 }

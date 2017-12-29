@@ -8,5 +8,4 @@ public class Killer : MonoBehaviour {
     {
         Destroy(collision.gameObject);
     }
-
 }

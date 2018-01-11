@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+    public AudioSource musicPrefab;
+    AudioSource backgroundMusic;
     public List<KeyValuePair<string, int>> highScoresData = new List<KeyValuePair<string, int>>();
     public bool fromGame = false;
     public int currentPoints = 0;
@@ -23,8 +25,24 @@ public class GameManager : MonoBehaviour
         Load();
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
+        if (backgroundMusic == null)
+        {
+            backgroundMusic = Instantiate(musicPrefab);
+            backgroundMusic.loop = true;
+            backgroundMusic.Play();
+            DontDestroyOnLoad(backgroundMusic);
+        }
     }
 
+    public void PlayMusic()
+    {
+        backgroundMusic.Play();
+    }
+
+    public void StopMusic()
+    {
+        backgroundMusic.Stop();
+    }
     private void Load()
     {
         //very ugly way to keep data, but Unity's serialization is not so good...

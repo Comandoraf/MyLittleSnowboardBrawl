@@ -51,3 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d8cfef016c4f14daac80454281f6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicPrefab: {fileID: 82954136589773178, guid: 7b3772f35fa2a254a91dd9692502bde7,
+    type: 2}
+  fromGame: 0
+  currentPoints: 0

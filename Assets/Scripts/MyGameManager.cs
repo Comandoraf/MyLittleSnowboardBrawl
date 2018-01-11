@@ -33,6 +33,7 @@ public class MyGameManager : MonoBehaviour {
             }
             if (Input.GetKey(KeyCode.Escape))
             {
+                GameManager.instance.PlayMusic();
                 if(saveHighScore)
                 {
                     GameManager.instance.currentPoints = int.Parse(pointsText.text);
